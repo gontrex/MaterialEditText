@@ -1,5 +1,7 @@
 package com.rengwuxian.materialedittext;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -14,11 +16,6 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatMultiAutoCompleteTextView;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -32,11 +29,17 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.nineoldandroids.animation.ArgbEvaluator;
-import com.nineoldandroids.animation.ObjectAnimator;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView;
+
 import com.rengwuxian.materialedittext.validation.METLengthChecker;
 import com.rengwuxian.materialedittext.validation.METValidator;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -47,6 +50,7 @@ import java.util.regex.Pattern;
  */
 public class MaterialMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteTextView {
 
+  @Retention(RetentionPolicy.SOURCE)
   @IntDef({FLOATING_LABEL_NONE, FLOATING_LABEL_NORMAL, FLOATING_LABEL_HIGHLIGHT})
   public @interface FloatingLabelType {
   }
