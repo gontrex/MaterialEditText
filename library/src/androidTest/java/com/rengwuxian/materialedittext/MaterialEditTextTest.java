@@ -1,33 +1,43 @@
 package com.rengwuxian.materialedittext;
 
-import android.test.AndroidTestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-/**
- * Misc tests for {@link com.rengwuxian.materialedittext.MaterialEditText}.
- * <p/>
- * Created by egor on 25/11/14.
- */
-public class MaterialEditTextTest extends AndroidTestCase {
+import android.content.Context;
+
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+@RunWith(AndroidJUnit4.class)
+public class MaterialEditTextTest {
 
     private MaterialEditText editTextUnderTest;
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        editTextUnderTest = new MaterialEditText(getContext());
+    @Before
+    public void setUp() {
+        Context context = ApplicationProvider.getApplicationContext();
+        editTextUnderTest = new MaterialEditText(context);
     }
 
+    @Test
     public void testGetErrorReturnsNullIfNoErrorMessageWasSet() {
         assertNull(editTextUnderTest.getError());
     }
 
+    @Test
     public void testGetErrorReturnsMessageSetEarlierViaSetError() {
         editTextUnderTest.layout(0, 0, 1000, 1000);
-        editTextUnderTest.setError("Error!");
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> editTextUnderTest.setError("Error!"));
         assertEquals("Error!", editTextUnderTest.getError().toString());
     }
 
+    @Test
     public void testSetErrorWithZeroSizeDoesNotThrow() {
-        editTextUnderTest.setError("Error!");
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> editTextUnderTest.setError("Error!"));
     }
 }

@@ -1,6 +1,7 @@
 package com.rengwuxian.materialedittext.validation;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 /**
  * Base Validator class to either implement or inherit from for custom validation
@@ -35,6 +36,6 @@ public abstract class METValidator {
    * @param isEmpty Boolean indicating whether or not the text param is empty
    * @return True if valid, false if not
    */
-  public abstract boolean isValid(@NonNull CharSequence text, boolean isEmpty);
+  public abstract boolean isValid(CharSequence text, boolean isEmpty);
 
 }
